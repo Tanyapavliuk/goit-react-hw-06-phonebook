@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from 'redux/sliceContact';
 import * as Yup from 'yup';
 
 const phoneRegExp =
@@ -34,46 +34,48 @@ const FormContact = () => {
       actions.resetForm();
       return;
     }
-    dispatch(addContact(nameUser, phone));
+    dispatch(addContact({ name: nameUser, phone }));
     actions.resetForm();
   };
 
   return (
-    <Formik
-      initialValues={{
-        nameUser: '',
-        phone: '',
-      }}
-      validationSchema={mySchema}
-      onSubmit={handlerSubmit}
-    >
-      {({ errors, touched }) => (
-        <Form className="w-60 flex flex-col gap-5">
-          <Field
-            name="nameUser"
-            type="text"
-            placeholder="Name"
-            className="py-2 px-1 outline outline-offset-2 outline-1"
-          />
-          {errors.nameUser && touched.nameUser ? (
-            <div>{errors.nameUser}</div>
-          ) : null}
-          <Field
-            name="phone"
-            type="number"
-            placeholder="380 000 000 000"
-            className="py-2 px-1 outline outline-offset-2 outline-1"
-          />
-          {errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
-          <button
-            type="submit"
-            className="py-2 px-2 border-solid border-2 border-indigo-600"
-          >
-            Submit
-          </button>
-        </Form>
-      )}
-    </Formik>
+    <>
+      <Formik
+        initialValues={{
+          nameUser: '',
+          phone: '',
+        }}
+        validationSchema={mySchema}
+        onSubmit={handlerSubmit}
+      >
+        {({ errors, touched }) => (
+          <Form className="w-60 flex flex-col gap-5">
+            <Field
+              name="nameUser"
+              type="text"
+              placeholder="Name"
+              className="py-2 px-1 outline outline-offset-2 outline-1"
+            />
+            {errors.nameUser && touched.nameUser ? (
+              <div>{errors.nameUser}</div>
+            ) : null}
+            <Field
+              name="phone"
+              type="number"
+              placeholder="380 000 000 000"
+              className="py-2 px-1 outline outline-offset-2 outline-1"
+            />
+            {errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
+            <button
+              type="submit"
+              className="py-2 px-2 border-solid border-2 border-indigo-600 hover:bg-indigo-100"
+            >
+              Submit
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 };
 

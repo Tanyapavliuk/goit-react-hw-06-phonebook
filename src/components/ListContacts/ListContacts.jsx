@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deliteContact } from 'redux/actions';
+import { deliteContact } from 'redux/sliceContact';
 
 const ListContact = () => {
   const contacts = useSelector(state => state.contants);
