@@ -14,7 +14,7 @@ const Filter = () => {
         name="query"
         onChange={e => dispatch(changeFilter(e.target.value))}
         value={value}
-        className="border-2 border-indigo-500 py-2 px-3 ps-10"
+        className="border-2 border-indigo-500 py-2 px-10"
         placeholder="Search..."
       />
       <span className="absolute top-0 left-0">

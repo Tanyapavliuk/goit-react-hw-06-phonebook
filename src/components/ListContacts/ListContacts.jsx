@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deliteContact } from 'redux/sliceContact';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const ListContact = () => {
   const contacts = useSelector(state => state.contants);
@@ -15,15 +16,20 @@ const ListContact = () => {
   };
 
   return (
-    <ul className="flex flex-col gap-3 list-none py-2 ">
+    <ListGroup variant="flush" style={{ gap: 10 }}>
       {visibleContactList().map(contact => (
-        <li
-          key={contact.id}
-          className="flex justify-around shadow-md shadow-indigo-500/40 bg-indigo-200 py-2"
-        >
+        <ListGroup.Item key={contact.id} style={{ backgroundColor: '#a7a7ec' }}>
           <button
+            style={{
+              backgroundColor: '#5c5c8a',
+              width: 30,
+              height: 30,
+              borderRadius: '50%',
+              overflow: 'hidden',
+              color: '#a7a7ec',
+              marginRight: 20,
+            }}
             type="button"
-            className="border border-indigo-600 px-2"
             onClick={e => {
               dispatch(deliteContact(contact.id));
             }}
@@ -33,9 +39,9 @@ const ListContact = () => {
           <span>
             {contact.name} : {contact.phone}
           </span>
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 };
 
