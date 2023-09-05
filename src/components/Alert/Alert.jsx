@@ -8,7 +8,7 @@ function MyAlert({ show, shangeShow }) {
           size="sm"
           show={show}
           onHide={() => shangeShow(false)}
-          aria-labelledby="example-modal-sizes-title-sm"
+          aria-labelledby="This number is in the list"
         >
           <Modal.Header closeButton>
             <Modal.Title id="example-modal-sizes-title-sm">Sorry</Modal.Title>

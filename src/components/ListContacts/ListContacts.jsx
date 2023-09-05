@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deliteContact } from 'redux/sliceContact';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 
 const ListContact = () => {
   const contacts = useSelector(state => state.contants);
@@ -16,32 +16,37 @@ const ListContact = () => {
   };
 
   return (
-    <ListGroup variant="flush" style={{ gap: 10 }}>
-      {visibleContactList().map(contact => (
-        <ListGroup.Item key={contact.id} style={{ backgroundColor: '#a7a7ec' }}>
-          <button
-            style={{
-              backgroundColor: '#5c5c8a',
-              width: 30,
-              height: 30,
-              borderRadius: '50%',
-              overflow: 'hidden',
-              color: '#a7a7ec',
-              marginRight: 20,
-            }}
-            type="button"
-            onClick={e => {
-              dispatch(deliteContact(contact.id));
-            }}
-          >
-            &#215;
-          </button>
-          <span>
-            {contact.name} : {contact.phone}
-          </span>
-        </ListGroup.Item>
-      ))}
-    </ListGroup>
+    <Table striped bordered hover variant="ligth">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {visibleContactList().map((contact, i) => (
+          <tr>
+            <td>{i + 1}</td>
+            <td>{contact.name}</td>
+            <td>{contact.phone}</td>
+            <td
+              onClick={e => {
+                dispatch(deliteContact(contact.id));
+              }}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              <span>&#215;</span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 };
 

@@ -6,6 +6,7 @@ import * as formik from 'formik';
 import * as yup from 'yup';
 import { useState } from 'react';
 import MyAlert from 'components/Alert/Alert';
+import { FloatingLabel } from 'react-bootstrap';
 
 const phoneRegExp =
   /^[\]?3?[\s]?8?[\s]?\(?0\d{2}?\)?[\s]?\d{3}[\s|-]?\d{2}[\s|-]?\d{2}$/;
@@ -61,37 +62,29 @@ const FormContact = () => {
       >
         {({ handleSubmit, handleChange, values, touched, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            <Form.Group controlId="nameUser">
-              <Form.Label>Name</Form.Label>
+            <FloatingLabel controlId="nameUser" label="Name" className="mb-3">
               <Form.Control
                 type="text"
-                name="nameUser"
+                placeholder="Name"
                 value={values.nameUser}
                 onChange={handleChange}
                 isValid={touched.nameUser && !errors.nameUser}
-                aria-describedby="name"
+                aria-describedby="Name"
               />
-              <Form.Text id="name" muted>
-                Please, write your name
-              </Form.Text>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
+            </FloatingLabel>
 
-            <Form.Group controlId="phone">
-              <Form.Label>Phone</Form.Label>
+            <FloatingLabel controlId="phone" label="Phone" className="mb-3">
               <Form.Control
                 type="text"
-                name="phone"
+                placeholder="Phone"
                 value={values.phone}
                 onChange={handleChange}
                 isValid={touched.phone && !errors.phone}
-                aria-describedby="phone"
+                aria-describedby="Phone"
               />
-              <Form.Text id="name" muted>
-                Please, write your number
-              </Form.Text>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
+            </FloatingLabel>
 
             <Button variant="outline-danger" type="submit">
               Submit
